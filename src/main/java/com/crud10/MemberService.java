@@ -52,9 +52,12 @@ public class MemberService {
                 save.getId(), save.getName());
     }
 
-    public void delete(Long memberId) {
+    @Transactional
+    public DeleteAllMemberResponse delete(Long memberId) {
         Member member = memberRepository.findById(memberId).orElseThrow(() -> new IllegalArgumentException("아이디 없음"));
 
         memberRepository.delete(member);
+
+        return new DeleteAllMemberResponse(memberId);
     }
 }
