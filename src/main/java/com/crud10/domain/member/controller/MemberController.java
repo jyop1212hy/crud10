@@ -1,5 +1,7 @@
-package com.crud10;
+package com.crud10.domain.member.controller;
 
+import com.crud10.domain.member.dto.*;
+import com.crud10.domain.member.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -8,16 +10,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/member/api")
 public class MemberController {
 
-
     private final MemberService memberService;
-
-    @PostMapping
-    public ResponseEntity<ApiRespose<CreateMemberResponse>> createMember(@RequestBody CreateMemberRequest request) {
-        CreateMemberResponse createMemberResponse = memberService.create(request);
-        ApiRespose<CreateMemberResponse> apiRespose = new ApiRespose<>("성공", 200, createMemberResponse);
-        return ResponseEntity.ok(apiRespose);
-
-    }
 
     @GetMapping("/{memberId}")
     public ResponseEntity<ApiRespose<FindMemberResponse>> findMember(@PathVariable Long memberId) {
@@ -36,7 +29,7 @@ public class MemberController {
 
     @PatchMapping("/{memberId}")
     public ResponseEntity<ApiRespose<UpdateAllMemberResponse>> updateAllMember(@PathVariable Long memberId,
-            @RequestBody UpdateMemberRequest request) {
+                                                                               @RequestBody UpdateMemberRequest request) {
         UpdateAllMemberResponse Response = memberService.update(memberId,request);
         ApiRespose<UpdateAllMemberResponse> apiRespose = new ApiRespose<>("성공", 200, Response);
         return ResponseEntity.ok(apiRespose);

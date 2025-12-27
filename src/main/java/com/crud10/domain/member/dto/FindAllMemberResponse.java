@@ -1,5 +1,6 @@
-package com.crud10;
+package com.crud10.domain.member.dto;
 
+import com.crud10.domain.member.entity.Member;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
